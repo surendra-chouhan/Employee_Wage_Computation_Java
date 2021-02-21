@@ -4,31 +4,34 @@ public class emp_wage_computation {
 
 		int is_FullTime=1;
 		int is_PartTime=2;
-		double wagePerHour=20;
-		double dailyWage;
-		double dailyHour;
+		int wagePerHour=20;
+		int max_hours_in_a_month=100;
 		int max_days_in_a_month=20;
-		int empCheck=(int)Math.floor(Math.random() * 10 ) %3;
+		int total_Emp_Hour=0;
+		int totalWorkingDays=0;
 
-		switch (empCheck) {
-			case 1:
-				System.out.println("Employee is Full Time");
-				dailyHour=8;
-				dailyWage=wagePerHour*dailyHour;
-				System.out.println("Employee wage is: "+ dailyWage);
-				System.out.println("Monthly Wage is : "+ dailyWage*max_days_in_a_month);
-				break;
+		while(total_Emp_Hour <= max_hours_in_a_month && totalWorkingDays < max_days_in_a_month) {
+			totalWorkingDays++;
+			int dailyHours=0;
+			int empCheck=(int)Math.floor(Math.random() * 10 ) %3;
 
-			case 2:
-				System.out.println("Employee is Part Time");
-				dailyHour=4;
-				dailyWage=wagePerHour*dailyHour;
-				System.out.println("Employee wage is: "+ dailyWage);
-				System.out.println("Monthly Wage is : "+ dailyWage*max_days_in_a_month);
-				break;
+			switch (empCheck) {
+				case 1:
+					dailyHours=8;
+					break;
 
-			case 0:
-				System.out.println("Employee is Absent");
+				case 2:
+					dailyHours=4;
+					break;
+
+				default:
+					dailyHours=0;
+					break;
+			}
+			total_Emp_Hour+=dailyHours;
 		}
+		int totalSalary=total_Emp_Hour*wagePerHour;
+		System.out.println("Total Salary of an Employee is : " + totalSalary);
 	}
 }
+
